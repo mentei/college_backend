@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: #fff;
+            display: flex;
+            height: 100vh;
+            margin: 0;
+        }
+        .sidebar {
+            width: 250px;
+            background: #222;
+            padding: 20px;
+        }
+        .sidebar a {
+            display: block;
+            color: #bbb;
+            padding: 10px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .sidebar a:hover {
+            background: #444;
+            color: #fff;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background: #222;
+        }
+        .logout {
+            color: red;
+            text-decoration: none;
+        }
+        .logout:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Admin Panel</h2>
+    <a href="demo.html">Dashboard</a>
+    <a href="noi.html">Notifications</a>
+    <a href="#">News</a>
+    <a href="#">Faculty</a>
+    <a href="#">Gallery</a>
+    <a href="#">More</a>
+</div>
+
+<div class="content">
+    <div class="header">
+        <h2>Welcome, <?php echo htmlspecialchars($admin['username']); ?>!</h2>
+        <a href="logout.php" class="logout">Logout</a>
+    </div>
+    <p>Hello Dear Admin, your branch is <b><?php echo htmlspecialchars($admin['branch']); ?></b></p>
+</div>
+
+</body>
+</html>

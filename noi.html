@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Notifications</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .form-control, .table {
+            background-color: #1e1e1e;
+            color: white;
+            border: 1px solid #333;
+        }
+        .form-control::placeholder {
+            color: #bbb;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+        }
+        .table thead {
+            background-color: #222;
+        }
+        .table tbody tr:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body class="container mt-4">
+    <h2 class="text-center mb-3">Admin Panel - Notifications</h2>
+    <form method="POST" enctype="multipart/form-data" class="mb-3">
+        <input type="text" name="title" placeholder="Title" class="form-control mb-2" required>
+        <textarea name="content" placeholder="Content" class="form-control mb-2" required></textarea>
+        <input type="file" name="attachments" class="form-control mb-2">
+        <button type="submit" name="add" class="btn btn-primary w-100">Add Notification</button>
+    </form>
+
+    <div class="table-responsive">
+        <table class="table table-bordered text-white">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Attachments</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($notifications as $note): ?>
+                    <tr>
+                        <td><?= $note['id'] ?></td>
+                        <td><?= htmlspecialchars($note['title']) ?></td>
+                        <td><?= htmlspecialchars($note['content']) ?></td>
+                        <td><?= htmlspecialchars($note['attachments']) ?></td>
+                        <td>
+                            <form method="POST" style="display:inline;">
+                                <input type="hidden" name="id" value="<?= $note['id'] ?>">
+                                <button type="submit" name="delete" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
